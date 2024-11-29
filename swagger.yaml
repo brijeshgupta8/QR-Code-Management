@@ -1,0 +1,550 @@
+# openapi: 3.0.0
+# info:
+#   title: QR Code Management API
+#   description: API for generating and managing QR codes, tracking events, and analyzing performance.
+#   version: 1.0.0
+# paths:
+#   /auth/signup:
+#     post:
+#       summary: Create a new user
+#       requestBody:
+#         required: true
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               properties:
+#                 username:
+#                   type: string
+#                 password:
+#                   type: string
+#       responses:
+#         201:
+#           description: User created successfully
+#         400:
+#           description: Username already exists
+#   /auth/login:
+#     post:
+#       summary: Login and get a JWT token
+#       requestBody:
+#         required: true
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               properties:
+#                 username:
+#                   type: string
+#                 password:
+#                   type: string
+#       responses:
+#         200:
+#           description: JWT token returned
+#         401:
+#           description: Invalid credentials
+#   /auth/me:
+#     get:
+#       summary: Get details of the logged-in user
+#       responses:
+#         200:
+#           description: User details returned
+#         401:
+#           description: Unauthorized
+#       security:
+#         - BearerAuth: []
+#   /qr/static:
+#     post:
+#       summary: Generate a static QR code
+#       requestBody:
+#         required: true
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               properties:
+#                 url:
+#                   type: string
+#       responses:
+#         200:
+#           description: Static QR code generated successfully
+#   /qr/dynamic:
+#     post:
+#       summary: Generate a dynamic QR code
+#       requestBody:
+#         required: true
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               properties:
+#                 url:
+#                   type: string
+#                 metadata:
+#                   type: object
+#       responses:
+#         200:
+#           description: Dynamic QR code generated successfully
+#   /qr/{id}/update:
+#     put:
+#       summary: Update a dynamic QR code
+#       parameters:
+#         - name: id
+#           in: path
+#           required: true
+#           schema:
+#             type: string
+#       requestBody:
+#         required: true
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               properties:
+#                 url:
+#                   type: string
+#       responses:
+#         200:
+#           description: QR code updated successfully
+#         404:
+#           description: QR code not found
+#   /qr/my-codes:
+#     get:
+#       summary: Get all QR codes created by the user
+#       responses:
+#         200:
+#           description: List of QR codes returned
+#         401:
+#           description: Unauthorized
+#       security:
+#         - BearerAuth: []
+#   /qr/{id}/track:
+#     post:
+#       summary: Track an event for a QR code
+#       parameters:
+#         - name: id
+#           in: path
+#           required: true
+#           schema:
+#             type: string
+#       requestBody:
+#         required: true
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               properties:
+#                 location:
+#                   type: string
+#                 device:
+#                   type: string
+#       responses:
+#         200:
+#           description: Event tracked successfully
+# components:
+#   securitySchemes:
+#     BearerAuth:
+#       type: http
+#       scheme: bearer
+#       bearerFormat: JWT
+# security:
+#   - BearerAuth: []
+
+
+
+
+
+
+
+# openapi: 3.0.0
+# info:
+#   title: QR Code Management API
+#   description: API for generating and managing QR codes, tracking events, and analyzing performance.
+#   version: 1.0.0
+# paths:
+#   /auth/signup:
+#     post:
+#       summary: Create a new user
+#       requestBody:
+#         required: true
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               properties:
+#                 username:
+#                   type: string
+#                 password:
+#                   type: string
+#       responses:
+#         201:
+#           description: User created successfully
+#         400:
+#           description: Username already exists
+#   /auth/login:
+#     post:
+#       summary: Login and get a JWT token
+#       requestBody:
+#         required: true
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               properties:
+#                 username:
+#                   type: string
+#                 password:
+#                   type: string
+#       responses:
+#         200:
+#           description: JWT token returned
+#         401:
+#           description: Invalid credentials
+#   /auth/me:
+#     get:
+#       summary: Get details of the logged-in user
+#       responses:
+#         200:
+#           description: User details returned
+#         401:
+#           description: Unauthorized
+#       security:
+#         - BearerAuth: []
+#   /qr/static:
+#     post:
+#       summary: Generate a static QR code
+#       requestBody:
+#         required: true
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               properties:
+#                 url:
+#                   type: string
+#       responses:
+#         200:
+#           description: Static QR code generated successfully
+#   /qr/dynamic:
+#     post:
+#       summary: Generate a dynamic QR code
+#       requestBody:
+#         required: true
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               properties:
+#                 url:
+#                   type: string
+#                 metadata:
+#                   type: object
+#       responses:
+#         200:
+#           description: Dynamic QR code generated successfully
+#   /qr/{id}/update:
+#     put:
+#       summary: Update a dynamic QR code
+#       parameters:
+#         - name: id
+#           in: path
+#           required: true
+#           schema:
+#             type: string
+#       requestBody:
+#         required: true
+#         content:
+#           application/json:
+#             schema:
+#               type: object
+#               properties:
+#                 url:
+#                   type: string
+#       responses:
+#         200:
+#           description: QR code updated successfully
+#         404:
+#           description: QR code not found
+#   /qr/{id}/events:
+#     get:
+#       summary: Get events for a QR code
+#       parameters:
+#         - name: id
+#           in: path
+#           required: true
+#           schema:
+#             type: string
+#           description: The ID of the QR code
+#       responses:
+#         200:
+#           description: List of events returned
+#           content:
+#             application/json:
+#               schema:
+#                 type: array
+#                 items:
+#                   type: object
+#                   properties:
+#                     timestamp:
+#                       type: string
+#                       format: date-time
+#                     location:
+#                       type: string
+#                     device:
+#                       type: string
+#         401:
+#           description: Unauthorized
+#   /analytics/{id}:
+#     get:
+#       summary: Get analytics for a QR code
+#       parameters:
+#         - name: id
+#           in: path
+#           required: true
+#           schema:
+#             type: string
+#           description: The ID of the QR code
+#         - name: dateRange
+#           in: query
+#           schema:
+#             type: string
+#           description: Optional date range for filtering analytics
+#       responses:
+#         200:
+#           description: Analytics data returned
+#           content:
+#             application/json:
+#               schema:
+#                 type: object
+#                 properties:
+#                   totalScans:
+#                     type: integer
+#                   uniqueUsers:
+#                     type: integer
+#                   scansPerDay:
+#                     type: object
+#                     additionalProperties:
+#                       type: integer
+#         401:
+#           description: Unauthorized
+# components:
+#   securitySchemes:
+#     BearerAuth:
+#       type: http
+#       scheme: bearer
+#       bearerFormat: JWT
+# security:
+#   - BearerAuth: []
+
+
+openapi: 3.0.0
+info:
+  title: QR Code Management API
+  description: API for generating and managing QR codes, tracking events, and analyzing performance.
+  version: 1.0.0
+paths:
+  /auth/signup:
+    post:
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        201:
+          description: User created successfully
+        400:
+          description: Username already exists
+
+  /auth/login:
+    post:
+      summary: Login and get a JWT token
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                username:
+                  type: string
+                password:
+                  type: string
+      responses:
+        200:
+          description: JWT token returned
+        401:
+          description: Invalid credentials
+
+  /auth/me:
+    get:
+      summary: Get details of the logged-in user
+      responses:
+        200:
+          description: User details returned
+        401:
+          description: Unauthorized
+      security:
+        - BearerAuth: []
+
+  /qr/static:
+    post:
+      summary: Generate a static QR code
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+      responses:
+        200:
+          description: Static QR code generated successfully
+
+  /qr/dynamic:
+    post:
+      summary: Generate a dynamic QR code
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+                metadata:
+                  type: object
+      responses:
+        200:
+          description: Dynamic QR code generated successfully
+
+  /qr/{id}/update:
+    put:
+      summary: Update a dynamic QR code
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the QR code
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                url:
+                  type: string
+      responses:
+        200:
+          description: QR code updated successfully
+        404:
+          description: QR code not found
+
+  /qr/{id}/events:
+    get:
+      summary: Get events for a QR code
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the QR code
+      responses:
+        200:
+          description: List of events returned
+        401:
+          description: Unauthorized
+
+  /analytics/{id}:
+    get:
+      summary: Get analytics for a QR code
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the QR code
+        - name: dateRange
+          in: query
+          schema:
+            type: string
+          description: Optional date range for filtering analytics
+      responses:
+        200:
+          description: Analytics data returned
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  totalScans:
+                    type: integer
+                  uniqueUsers:
+                    type: integer
+                  scansPerDay:
+                    type: object
+                    additionalProperties:
+                      type: integer
+        401:
+          description: Unauthorized
+
+  /qr/my-codes:
+    get:
+      summary: Get all QR codes created by the user
+      responses:
+        200:
+          description: List of QR codes returned
+        401:
+          description: Unauthorized
+      security:
+        - BearerAuth: []
+
+  /qr/{id}/track:
+    post:
+      summary: Track an event for a QR code
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+          description: The ID of the QR code
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                location:
+                  type: string
+                device:
+                  type: string
+      responses:
+        200:
+          description: Event tracked successfully
+        401:
+          description: Unauthorized
+
+components:
+  securitySchemes:
+    BearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+security:
+  - BearerAuth: []
