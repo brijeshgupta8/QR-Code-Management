@@ -2,46 +2,44 @@
 
 ## 🌟 Introduction
 
-The **QR Code Management API** is a backend application that provides the functionality for:
+The **QR Code Management API** is a backend application designed to create and manage QR codes. It provides functionality for:
 
-- **Creating and managing QR codes** (both static and dynamic)
+- **Generating static and dynamic QR codes**
 - **Tracking QR code usage events**
 - **Analyzing the performance of QR codes**
-- **User authentication and access control** to ensure secure access to the QR codes.
+- **User authentication and access control** to ensure only authorized users can access their QR codes.
 
 ---
 
 ## 🚀 Setup Instructions
 
-### 1. **Clone the Repository**
+### 1. Clone the Repository
 
 Clone the repository to your local machine using Git:
 
-```bash
 git clone https://github.com/brijeshgupta8/QR-Code-Management
 
 
-### 2. **Install Dependencies**
+2. Install Dependencies
 Navigate to the project directory and install all the required dependencies using npm:
 npm install
 
 
-### 3. **Configure Environment Variables**
-Create a .env file in the root directory and add the following content:
+3. Configure Environment Variables
 
 MONGO_URI=mongodb+srv://brijeshgupta8083:lCCkX0rylFjHabgD@cluster0.mdsrs.mongodb.net/qr-code-management?retryWrites=true&w=majority&appName=Cluster0
 
 JWT_SECRET=your_secret_key
 PORT=3000
 
-### 4. **Run the Application**
-To start the server, run the following command:
+
+4. Run the Application
 node app.js
 
 The application will be available at http://localhost:3000
 
 
-### 🛠️ **Dependencies**
+🛠️ Dependencies
 This project uses the following dependencies:
 
 express: Web framework for building APIs.
@@ -51,7 +49,8 @@ jsonwebtoken: For JWT-based authentication.
 dotenv: For managing environment variables.
 
 
-### 📄 **API Documentation**
+📄 API Documentation
+
 The API documentation is available through Swagger UI. After running the application, you can access the documentation at:
 
 http://localhost:3000/api-docs
