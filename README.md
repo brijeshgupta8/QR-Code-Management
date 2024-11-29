@@ -47,11 +47,16 @@ The application will be available at http://localhost:3000
 
 This project uses the following dependencies:
 
-express: Web framework for building APIs.
-mongoose: MongoDB object modeling for Node.js.
-qrcode: Library for generating QR codes.
-jsonwebtoken: For JWT-based authentication.
-dotenv: For managing environment variables.
+- **bcryptjs**: A library to hash and compare passwords securely.
+- **dotenv**: A module to load environment variables from a `.env` file into `process.env`.
+- **express**: A lightweight web framework for building RESTful APIs.
+- **jsonwebtoken**: A library to create and verify JSON Web Tokens (JWT) for authentication.
+- **mongoose**: An ODM (Object Data Modeling) library for MongoDB and Node.js.
+- **qrcode**: A library for generating QR codes in various formats.
+- **swagger-ui-express**: Middleware to serve Swagger UI for API documentation.
+- **yamljs**: A library to parse and convert YAML files to JavaScript objects.
+
+
 
 
 ### 📄 API Documentation
