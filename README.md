@@ -29,7 +29,7 @@ npm install
 
 ### 3. Configure Environment Variables
 
-MONGO_URI=mongodb+srv://brijeshgupta8083:lCCkX0rylFjHabgD@cluster0.mdsrs.mongodb.net/qr-code-management?retryWrites=true&w=majority&appName=Cluster0
+MONGO_URI: Your MongoDB connection string
 
 JWT_SECRET=your_secret_key
 
