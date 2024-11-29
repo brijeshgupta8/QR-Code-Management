@@ -60,5 +60,9 @@ The API documentation is available through Swagger UI. After running the applica
 
 http://localhost:3000/api-docs
 
+### 💬 Contact
+
+For any questions or issues, feel free to reach out to me at brijeshgupta8@gmail.com.
+
 
 
