@@ -62,7 +62,7 @@ http://localhost:3000/api-docs
 
 ### 💬 Contact
 
-For any questions or issues, feel free to reach out to me at brijeshgupta8@gmail.com.
+For any questions or issues, feel free to reach out to me at brijeshgupta8083@gmail.com.
 
 
 
